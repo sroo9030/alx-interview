@@ -1,14 +1,36 @@
 #!/usr/bin/python3
+"""
+This module determines the winner of a game played between Maria and Ben.
+
+"""
 
 
 def isWinner(x, nums):
-    """Determines the winner of the game
+    """
+    Determines the overall winner after x rounds of the game.
+
+    Parameters:
+    x (int): Number of rounds.
+    nums (list of int): List of values for n in each round.
+
+    Returns:
+    str: Name of the player who won the most rounds ("Maria" or "Ben").
+         Returns None if there is a tie.
     """
     if not nums or x < 1:
         return None
     
     def sieve(n):
-        """Returns a list where primes[i] is True if i is a prime number
+        """
+        Generates a boolean list where primes[i] 
+        is True if i is a prime number.
+
+        Parameters:
+        n (int): The maximum number to check for primes.
+
+        Returns:
+        list: A boolean list indicating prime status for numbers 
+        from 0 to n.
         """
         primes = [True] * (n + 1)
         primes[0] = primes[1] = False  # 0 and 1 are not prime
@@ -20,7 +42,7 @@ def isWinner(x, nums):
     
     max_n = max(nums)  # Find the maximum n in nums
     # Store the count of primes up to index i
-    prime_counts = [0] * (max_n + 1)  
+    prime_counts = [0] * (max_n + 1) 
     primes = sieve(max_n)
     
     # Precompute prime counts
@@ -32,9 +54,11 @@ def isWinner(x, nums):
     
     for n in nums:
         if prime_counts[n] % 2 == 1:
-            maria_wins += 1  # Maria wins if the count of primes is odd
+            # Maria wins if the count of primes is odd
+            maria_wins += 1 
         else:
-            ben_wins += 1  # Ben wins if the count of primes is even
+            # Ben wins if the count of primes is even
+            ben_wins += 1
     
     if maria_wins > ben_wins:
         return "Maria"
