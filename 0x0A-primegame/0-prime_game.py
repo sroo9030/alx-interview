@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 
+
 def isWinner(x, nums):
-    """Determines the winner of the game"""
+    """Determines the winner of the game
+    """
     if not nums or x < 1:
         return None
     
     def sieve(n):
-        """Returns a list where primes[i] is True if i is a prime number"""
+        """Returns a list where primes[i] is True if i is a prime number
+        """
         primes = [True] * (n + 1)
         primes[0] = primes[1] = False  # 0 and 1 are not prime
         for i in range(2, int(n**0.5) + 1):
